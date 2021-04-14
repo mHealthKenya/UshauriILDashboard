@@ -1,0 +1,21 @@
+header.main-header
+	a(href='/').logo
+		span.logo-mini
+			<b>A</b> LT
+		span.logo-lg
+			<b>Admin</b> LT
+	nav(role='navigation').navbar.navbar-static-top
+		a(href='#', role='button', data-toggle='offcanvas').sidebar-toggle
+			span.sr-only Toggle Navigation
+			span.icon-bar
+			span.icon-bar
+			span.icon-bar
+		div.navbar-custom-menu
+			ul.nav.navbar-nav
+
+				li.dropdown.user.user-menu
+					a(href='/logout')
+						img(src='/adminlte/dist/img/boxed-bg.jpg',alt='User Image').user-image
+						span.hidden-xs
+							| Sign out
+					
