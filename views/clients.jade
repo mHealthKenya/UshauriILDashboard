@@ -8,9 +8,9 @@ block content
       //- Do it like this...You're already in JavaScript land after the -
       - var items = results
 
-      div.container
+      div
         script. 
-          $(function() {
+          $(document).ready(function() {
             $('#resultTable').DataTable({
               'paging'      : true,
               'lengthChange': false,
@@ -20,8 +20,9 @@ block content
               'autoWidth'   : false
             });
           });
+          
         div#dataToShow 
-          table#resultTable.table.table-bordered.datatables 
+          table#resultTable.table.thead-light.datatables 
             thead 
               tr: th Clients
                   th Gender 

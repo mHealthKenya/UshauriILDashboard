@@ -2,7 +2,7 @@ extends layout/base
 
 block content
     #heading
-      h1.text-center IL Appointments
+      h1.text-center IL Discontinuation Messages
       
     #content
       //- Do it like this...You're already in JavaScript land after the -
@@ -13,26 +13,24 @@ block content
         table.table.table-bordered.mx-auto.datatables
           thead.thead-dark 
             tr: th Clinic Number 
-                th Appointment Date
-                th Appointment Reason 
-                th Appointment Status 
-                th Source 
-                th Appointment Location 
-                th Reason 
+                th Sending Facility
+                th Source
+                th Observation Value 
+                th Observation Time 
+                th Death Indicator 
                 th Processed 
                 th Date Processed 
-                th Placer Appointment Number
+
           tbody 
             each item in items
 
               tr 
                 td=item.clinic_number
-                td=item.appntmnt_date
-                td=item.APPOINTMENT_REASON 
+                td=item.mfl_code
+                td=item.db_source 
                 td=item.app_status
-                td=item.db_source
-                td=item.APPOINTMENT_LOCATION
-                td=item.reason
+                td=item.observation_value
+                td=item.observation_date
+                td=item.death_status
                 td=item.processed
                 td=item.date_processed
-                td=item.placer_appointment_number

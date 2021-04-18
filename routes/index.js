@@ -59,6 +59,17 @@ router.get("/appointments", function(req, res){
   })
 })
 
+router.get("/observations", function(req, res){
+
+  connection.query("select * from clients_oru", function(error,results,fields){
+      if (error){
+          console.log(error)
+      } else {
+          res.render("observations", {results:results})
+      }
+  })
+})
+
 router.get("/logout", function(req, res, next) {
   res.sendFile(path.resolve("views/index.html"));
 });
