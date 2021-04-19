@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require("body-parser");
 var encoder = bodyParser.urlencoded();
 const mysql = require("mysql");
+var moment = require("moment");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -11,6 +12,10 @@ const connection = mysql.createConnection({
   password: "root",
   database: "ushauri_il"
 });
+
+function formatDate(date) {
+  return moment(date).format('YYYY-MM-DD HH:mm:ss');
+}
 
 // connect to the database
 connection.connect(function(error){
@@ -43,7 +48,15 @@ router.get("/clients", function(req, res){
       if (error){
           console.log(error)
       } else {
-          res.render("clients", {results:results})
+
+        rows = results.map(result=> ({
+          ...result,
+          enrollment_date: formatDate(result.enrollment_date),
+          art_date: formatDate(result.art_date),
+          date_processed: formatDate(result.date_processed)
+        }));
+
+        res.render("clients", {rows:rows})
       }
   })
 })
@@ -54,7 +67,14 @@ router.get("/appointments", function(req, res){
       if (error){
           console.log(error)
       } else {
-          res.render("appointments", {results:results})
+
+      rows = results.map(result=> ({
+        ...result,
+        appntmnt_date: formatDate(result.appntmnt_date),
+        date_processed: formatDate(result.date_processed)
+      }));
+
+          res.render("appointments", {rows:rows})
       }
   })
 })
@@ -65,7 +85,14 @@ router.get("/observations", function(req, res){
       if (error){
           console.log(error)
       } else {
-          res.render("observations", {results:results})
+
+        rows = results.map(result=> ({
+          ...result,
+          observation_date: formatDate(result.observation_date),
+          date_processed: formatDate(result.date_processed)
+        }));
+
+        res.render("observations", {rows:rows})
       }
   })
 })

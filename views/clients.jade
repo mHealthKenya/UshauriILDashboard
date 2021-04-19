@@ -6,7 +6,7 @@ block content
 
     #content
       //- Do it like this...You're already in JavaScript land after the -
-      - var items = results
+      - var items = rows
 
       div
         script. 
@@ -24,18 +24,20 @@ block content
         div#dataToShow 
           table#resultTable.table.thead-light.datatables 
             thead 
-              tr: th Clients
+              tr: th Clien Number
                   th Gender 
                   th Marital Status
                   th Phone Number 
                   th Group 
                   th Source 
-                  th Enrollment Date 
+                  th Enrollment Date
+                  th ART Date 
                   th Processed 
                   th Date Processed 
-                  th Medical Record Number 
+                  th Logs 
             tbody 
               each item in items
+
                 tr 
                   td=item.clinic_number
                   td=item.gender
@@ -44,9 +46,10 @@ block content
                   td=item.group_id
                   td=item.SENDING_APPLICATION
                   td=item.enrollment_date
+                  td=item.art_date
                   td=item.processed
                   td=item.date_processed
-                  td=item.file_no
+                  td=item.send_log
 
 
 

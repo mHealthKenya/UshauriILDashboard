@@ -6,7 +6,7 @@ block content
       
     #content
       //- Do it like this...You're already in JavaScript land after the -
-      - var items = results
+      - var items = rows
 
       div 
 
@@ -17,11 +17,10 @@ block content
                 th Appointment Reason 
                 th Appointment Status 
                 th Source 
-                th Appointment Location 
-                th Reason 
                 th Processed 
                 th Date Processed 
                 th Placer Appointment Number
+                th Logs
           tbody 
             each item in items
 
@@ -31,8 +30,7 @@ block content
                 td=item.APPOINTMENT_REASON 
                 td=item.app_status
                 td=item.db_source
-                td=item.APPOINTMENT_LOCATION
-                td=item.reason
                 td=item.processed
                 td=item.date_processed
                 td=item.placer_appointment_number
+                td=item.send_log
