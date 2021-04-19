@@ -61,6 +61,34 @@ router.get("/clients", function(req, res){
   })
 })
 
+router.post("/clients",encoder, function(req,res){
+  var start = req.body.start_date;
+  var end = req.body.end_date;
+
+  if(end === "" || end === undefine) {
+    end = moment().toDate() ;
+  }
+
+  connection.query("select * from clients where created_at between ? and ?",[start,end],function(error,results,fields){
+    if (error){
+      console.log(error)
+    } else {
+
+    rows = results.map(result=> ({
+      ...result,
+      enrollment_date: formatDate(result.enrollment_date),
+      art_date: formatDate(result.art_date),
+      date_processed: formatDate(result.date_processed)
+    }));
+
+    res.render("clients", {rows:rows})
+
+    }  
+
+  }) 
+  
+})
+
 router.get("/appointments", function(req, res){
 
   connection.query("select * from appointments", function(error,results,fields){
@@ -75,6 +103,32 @@ router.get("/appointments", function(req, res){
       }));
 
           res.render("appointments", {rows:rows})
+      }
+  })
+})
+
+router.post("/appointments",encoder, function(req, res){
+
+  var start = req.body.start_date;
+  var end = req.body.end_date;
+
+  if(end === "" || end === undefine) {
+    end = moment().toDate() ;
+  }
+
+  connection.query("select * from appointments where created_at between ? and ?",[start,end], function(error,results,fields){
+      if (error){
+          console.log(error)
+      } else {
+
+      rows = results.map(result=> ({
+        ...result,
+        appntmnt_date: formatDate(result.appntmnt_date),
+        date_processed: formatDate(result.date_processed)
+      }));
+
+      res.render("appointments", {rows:rows})
+
       }
   })
 })
@@ -97,10 +151,33 @@ router.get("/observations", function(req, res){
   })
 })
 
+router.post("/observations",encoder, function(req, res){
+
+  var start = req.body.start_date;
+  var end = req.body.end_date;
+
+  if(end === "" || end === undefine) {
+    end = moment().toDate() ;
+  }
+
+  connection.query("select * from clients_oru where created_at between ? and ?",[start,end], function(error,results,fields){
+    if (error){
+        console.log(error)
+    } else {
+
+      rows = results.map(result=> ({
+        ...result,
+        observation_date: formatDate(result.observation_date),
+        date_processed: formatDate(result.date_processed)
+      }));
+
+      res.render("observations", {rows:rows})
+    }
+  })
+})
+
 router.get("/logout", function(req, res, next) {
   res.sendFile(path.resolve("views/index.html"));
 });
-
-router
 
 module.exports = router;
