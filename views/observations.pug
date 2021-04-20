@@ -10,7 +10,7 @@ block content
 
       div 
 
-        div.pull-right
+        div.text-center
           div.row
             form(method="POST", action="/observations")
               label(for='from') From  :
@@ -20,26 +20,35 @@ block content
             
               input(type='submit',name='submit',value='Submit', class='btn btn-primary').submit-button
 
-        table.table.table-bordered.mx-auto
-          thead.thead-dark 
-            tr: th Clinic Number 
-                th Sending Facility
-                th Source
-                th Status
-                th Observation Value 
-                th Observation Time 
-                th Processed 
-                th Logs
+        div
 
-          tbody 
-            each item in items
+          script.
+            $(document).ready(function() {
+              $('#resultTable').DataTable({
+                "order": [[ 0, "desc" ]]
+                });
+            });
 
-              tr 
-                td=item.clinic_number
-                td=item.mfl_code
-                td=item.SENDING_APPLICATION
-                td=item.app_status
-                td=item.observation_value
-                td=item.observation_date
-                td=item.processed
-                td=item.send_log
+          table#resultTable.table
+            thead.thead-dark 
+              tr: th Clinic Number 
+                  th Sending Facility
+                  th Source
+                  th Status
+                  th Observation Value 
+                  th Observation Time 
+                  th Processed 
+                  th Logs
+
+            tbody 
+              each item in items
+
+                tr 
+                  td=item.clinic_number
+                  td=item.mfl_code
+                  td=item.SENDING_APPLICATION
+                  td=item.app_status
+                  td=item.observation_value
+                  td=item.observation_date
+                  td=item.processed
+                  td=item.send_log

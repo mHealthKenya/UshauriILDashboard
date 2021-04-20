@@ -10,7 +10,7 @@ block content
      
       div 
 
-        div.pull-right
+        div.text-center
           div.row
             form(method="POST", action="/appointments")
               label(for='from') From  :
@@ -20,27 +20,36 @@ block content
             
               input(type='submit',name='submit',value='Filter', class='btn btn-primary').submit-button
 
-        table.table.table-bordered.mx-auto
-          thead.thead-dark 
-            tr: th Clinic Number 
-                th Appointment Date
-                th Appointment Reason 
-                th Appointment Status 
-                th Source 
-                th Processed 
-                th Date Processed 
-                th Placer Appointment Number
-                th Logs
-          tbody 
-            each item in items
+        div 
 
-              tr 
-                td=item.clinic_number
-                td=item.appntmnt_date
-                td=item.APPOINTMENT_REASON 
-                td=item.app_status
-                td=item.db_source
-                td=item.processed
-                td=item.date_processed
-                td=item.placer_appointment_number
-                td=item.send_log
+          script.
+            $(document).ready(function() {
+              $('#resultTable').DataTable({
+                "order": [[ 0, "desc" ]]
+                });
+            });
+
+          table#resultTable.table
+            thead
+              tr: th Clinic Number 
+                  th Appointment Date
+                  th Appointment Reason 
+                  th Appointment Status 
+                  th Source 
+                  th Processed 
+                  th Date Processed 
+                  th Placer Appointment Number
+                  th Logs
+            tbody 
+              each item in items
+
+                tr 
+                  td=item.clinic_number
+                  td=item.appntmnt_date
+                  td=item.APPOINTMENT_REASON 
+                  td=item.app_status
+                  td=item.db_source
+                  td=item.processed
+                  td=item.date_processed
+                  td=item.placer_appointment_number
+                  td=item.send_log
