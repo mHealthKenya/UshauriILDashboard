@@ -12,24 +12,25 @@ block content
     - var items = rows
       
       div
-        
+
+        script.
+
+          $(document).ready(function() {
+            $('#resultTable').DataTable({
+              "order": [[ 0, "desc" ]]
+              });
+          });
+
+
         div.text-center
-          div.row
-            form(method="POST", action="/clients")
+          form(method="POST", action="/clients")
               label(for='from') From  :
               input(type='date', name='start_date', id='start_date')
               label(for='to') To  :
               input(type='date', name='end_date', id='end_date')
-            
               input(type='submit',name='submit',value='Submit', class='btn btn-primary').submit-button
-        div
 
-          script.
-            $(document).ready(function() {
-              $('#resultTable').DataTable({
-                "order": [[ 0, "desc" ]]
-                });
-            });
+        div
 
           table#resultTable.table.thead-light 
             thead 

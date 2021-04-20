@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var encoder = bodyParser.urlencoded();
 const mysql = require("mysql");
 var moment = require("moment");
+var today = moment().toDate();
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -44,7 +45,7 @@ router.post("/",encoder, function(req,res){
 
 router.get("/clients", function(req, res){
 
-  connection.query("select * from clients", function(error,results,fields){
+  connection.query("select * from clients where created_at = ?",[today], function(error,results,fields){
       if (error){
           console.log(error)
       } else {
@@ -65,7 +66,7 @@ router.post("/clients",encoder, function(req,res){
   var start = req.body.start_date;
   var end = req.body.end_date;
 
-  if(end === "" || end === undefine) {
+  if(end === "" || end === undefined) {
     end = moment().toDate() ;
   }
 
@@ -91,7 +92,7 @@ router.post("/clients",encoder, function(req,res){
 
 router.get("/appointments", function(req, res){
 
-  connection.query("select * from appointments", function(error,results,fields){
+  connection.query("select * from appointments where created_at = ?",[today], function(error,results,fields){
       if (error){
           console.log(error)
       } else {
@@ -112,7 +113,7 @@ router.post("/appointments",encoder, function(req, res){
   var start = req.body.start_date;
   var end = req.body.end_date;
 
-  if(end === "" || end === undefine) {
+  if(end === "" || end === undefined) {
     end = moment().toDate() ;
   }
 
@@ -135,7 +136,7 @@ router.post("/appointments",encoder, function(req, res){
 
 router.get("/observations", function(req, res){
 
-  connection.query("select * from clients_oru", function(error,results,fields){
+  connection.query("select * from clients_oru where created_at = ?",[today], function(error,results,fields){
       if (error){
           console.log(error)
       } else {
@@ -156,7 +157,7 @@ router.post("/observations",encoder, function(req, res){
   var start = req.body.start_date;
   var end = req.body.end_date;
 
-  if(end === "" || end === undefine) {
+  if(end === "" || end === undefined) {
     end = moment().toDate() ;
   }
 
