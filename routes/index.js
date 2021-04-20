@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 });
 
 function formatDate(date) {
-  return moment(date).format('YYYY-MM-DD HH:mm:ss');
+  return moment(date).format('YYYY-MM-DD');
 }
 
 // connect to the database
