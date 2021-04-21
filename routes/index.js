@@ -11,6 +11,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
+  port: 3306,
   database: "ushauri_il"
 });
 
@@ -173,6 +174,47 @@ router.post("/observations",encoder, function(req, res){
       }));
 
       res.render("observations", {rows:rows})
+    }
+  })
+})
+
+router.get("/general-logs", function(req, res){
+
+  connection.query("select * from logs where created_at = ?",[today], function(error,results,fields){
+      if (error){
+          console.log(error)
+      } else {
+
+        rows = results.map(result=> ({
+          ...result,
+          date_processed: formatDate(result.date_processed)
+        }));
+
+        res.render("general", {rows:rows})
+      }
+  })
+})
+
+router.post("/general-logs",encoder, function(req, res){
+
+  var start = req.body.start_date;
+  var end = req.body.end_date;
+
+  if(end === "" || end === undefined) {
+    end = moment().toDate() ;
+  }
+
+  connection.query("select * from logs where created_at between ? and ?",[start,end], function(error,results,fields){
+    if (error){
+        console.log(error)
+    } else {
+
+      rows = results.map(result=> ({
+        ...result,
+        date_processed: formatDate(result.date_processed)
+      }));
+
+      res.render("general", {rows:rows})
     }
   })
 })
