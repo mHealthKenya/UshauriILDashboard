@@ -3,7 +3,7 @@ extends layout/base
 block content
 
     #heading
-      h1.text-center IL Clients
+      h1.text-center IL Clients Sync
 
     #content
 
@@ -17,7 +17,8 @@ block content
 
           $(document).ready(function() {
             $('#resultTable').DataTable({
-              "order": [[ 0, "desc" ]]
+              "order": [[ 0, "desc" ]],
+              "lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]]
               });
           });
 
@@ -34,9 +35,9 @@ block content
 
           table#resultTable.table.thead-light 
             thead 
-              tr: th Clien Number
-                  th Gender 
-                  th Marital Status
+              tr: th First Name
+                  th Last Name
+                  th Client Number
                   th Phone Number 
                   th Source 
                   th Enrollment Date
@@ -48,15 +49,24 @@ block content
               each item in items
 
                 tr 
+                  td=item.f_name
+                  td=item.l_name
                   td=item.clinic_number
-                  td=item.gender
-                  td=item.marital
                   td=item.phone_no
-                  td=item.SENDING_APPLICATION
-                  td=item.enrollment_date
-                  td=item.art_date
+                  td=item.sending_application
+                  if item.art_date == 'Invalid date'
+                    td=('Missing')
+                  else
+                    td=item.art_date
+                  if item.enrollment_date == 'Invalid date'
+                    td=('Missing')
+                  else  
+                    td=item.enrollment_date
                   td=item.processed
-                  td=item.date_processed
+                  if item.date_processed == 'Invalid date'
+                    td=('Missing')
+                  else
+                    td=item.date_processed
                   td=item.send_log
 
 

@@ -5,7 +5,8 @@ var bodyParser = require("body-parser");
 var encoder = bodyParser.urlencoded();
 const mysql = require("mysql");
 var moment = require("moment");
-var today = moment().toDate();
+var today = moment(new Date()).format("YYYY-MM-DD")
+console.log(today)
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -16,7 +17,7 @@ const connection = mysql.createConnection({
 });
 
 function formatDate(date) {
-  return moment(date).format('YYYY-MM-DD');
+  return moment(date).format('YYYY-MM-DD ');
 }
 
 // connect to the database
@@ -46,7 +47,7 @@ router.post("/",encoder, function(req,res){
 
 router.get("/clients", function(req, res){
 
-  connection.query("select * from clients where created_at = ?",[today], function(error,results,fields){
+  connection.query("select * from clients where created_at >= ?",today, function(error,results,fields){
       if (error){
           console.log(error)
       } else {
@@ -54,7 +55,7 @@ router.get("/clients", function(req, res){
         rows = results.map(result=> ({
           ...result,
           enrollment_date: formatDate(result.enrollment_date),
-          art_date: formatDate(result.art_date),
+          art_date: result.filter(formatDate(result.art_date)),
           date_processed: formatDate(result.date_processed)
         }));
 
@@ -93,7 +94,7 @@ router.post("/clients",encoder, function(req,res){
 
 router.get("/appointments", function(req, res){
 
-  connection.query("select * from appointments where created_at = ?",[today], function(error,results,fields){
+  connection.query("select * from appointments where created_at >= ?",[today], function(error,results,fields){
       if (error){
           console.log(error)
       } else {
@@ -137,7 +138,7 @@ router.post("/appointments",encoder, function(req, res){
 
 router.get("/observations", function(req, res){
 
-  connection.query("select * from clients_oru where created_at = ?",[today], function(error,results,fields){
+  connection.query("select * from clients_oru where created_at >= ?",[today], function(error,results,fields){
       if (error){
           console.log(error)
       } else {
@@ -180,7 +181,7 @@ router.post("/observations",encoder, function(req, res){
 
 router.get("/general-logs", function(req, res){
 
-  connection.query("select * from logs where created_at = ?",[today], function(error,results,fields){
+  connection.query("select * from logs where created_at >= ?",[today], function(error,results,fields){
       if (error){
           console.log(error)
       } else {

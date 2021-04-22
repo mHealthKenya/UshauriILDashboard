@@ -2,7 +2,7 @@ extends layout/base
 
 block content
     #heading
-      h1.text-center IL Discontinuation Messages
+      h1.text-center IL Discontinuation Messages Sync
       
     #content
       //- Do it like this...You're already in JavaScript land after the -
@@ -25,16 +25,18 @@ block content
           script.
             $(document).ready(function() {
               $('#resultTable').DataTable({
-                "order": [[ 0, "desc" ]]
+                "order": [[ 0, "desc" ]],
+                "lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]]
                 });
             });
 
           table#resultTable.table
             thead.thead-dark 
-              tr: th Clinic Number 
+              tr: th First Name 
+                  th Last Name
+                  th Clinic Number 
                   th Sending Facility
                   th Source
-                  th Status
                   th Observation Value 
                   th Observation Time 
                   th Processed 
@@ -45,12 +47,16 @@ block content
               each item in items
 
                 tr 
+                  td=item.f_name
+                  td=item.l_name
                   td=item.clinic_number
                   td=item.mfl_code
-                  td=item.SENDING_APPLICATION
-                  td=item.app_status
+                  td=item.sending_application
                   td=item.observation_value
                   td=item.observation_date
-                  td=item.date_processed
                   td=item.processed
+                  if item.date_processed == 'Invalid date'
+                    td=('Missing')
+                  else
+                    td=item.date_processed
                   td=item.send_log

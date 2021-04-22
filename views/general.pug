@@ -17,7 +17,8 @@ block content
 
           $(document).ready(function() {
             $('#resultTable').DataTable({
-              "order": [[ 0, "desc" ]]
+              "order": [[ 0, "desc" ]],
+              "lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]]
               });
           });
 

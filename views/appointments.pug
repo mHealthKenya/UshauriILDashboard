@@ -2,7 +2,7 @@ extends layout/base
 
 block content
     #heading
-      h1.text-center IL Appointments
+      h1.text-center IL Appointments Sync
       
     #content
       //- Do it like this...You're already in JavaScript land after the -
@@ -25,7 +25,8 @@ block content
           script.
             $(document).ready(function() {
               $('#resultTable').DataTable({
-                "order": [[ 0, "desc" ]]
+                "order": [[ 0, "desc" ]],
+                "lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]]
                 });
             });
 
@@ -36,9 +37,9 @@ block content
                   th Appointment Reason 
                   th Appointment Status 
                   th Source 
-                  th Processed 
-                  th Date Processed 
                   th Placer Appointment Number
+                  th Processed  
+                  th Date Processed
                   th Logs
             tbody 
               each item in items
@@ -46,10 +47,13 @@ block content
                 tr 
                   td=item.clinic_number
                   td=item.appntmnt_date
-                  td=item.APPOINTMENT_REASON 
+                  td=item.appointment_reason
                   td=item.app_status
                   td=item.db_source
-                  td=item.processed
-                  td=item.date_processed
                   td=item.placer_appointment_number
+                  td=item.processed
+                  if item.date_processed == 'Invalid date'
+                    td=('Missing')
+                  else
+                    td=item.date_processed
                   td=item.send_log
