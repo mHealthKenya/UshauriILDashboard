@@ -56,15 +56,43 @@ router.get("/clients", function(req, res){
           console.log(error)
       } else {
 
-        rows = results.map(result=> ({
-          ...result,
-          enrollment_date: formatDate(result.enrollment_date),
-          art_date: formatDate(result.art_date),
-          date_processed: formatDate(result.date_processed)
-        })); 
+        internetAvailable({
+          // Provide maximum execution time for the verification
+          timeout: 5000,
+          // If it tries 5 times and it fails, then it will throw no internet
+          retries: 5
+        }).then(() => {
 
-        res.render("clients", {rows:rows})
+          var msg = "Online"
 
+          rows = results.map(result=> ({
+            ...result,
+            enrollment_date: formatDate(result.enrollment_date),
+            art_date: formatDate(result.art_date),
+            date_processed: formatDate(result.date_processed)
+          })); 
+
+          res.render("clients",{
+            rows:rows,
+            msg:msg
+          })
+
+        }).catch(() => {
+            
+          var msg = "Please Connect to the internet"
+
+          rows = results.map(result=> ({
+            ...result,
+            enrollment_date: formatDate(result.enrollment_date),
+            art_date: formatDate(result.art_date),
+            date_processed: formatDate(result.date_processed)
+          })); 
+
+          res.render("clients",{
+            rows:rows,
+            msg:msg
+          })
+        }); 
 
       }
   })
@@ -105,13 +133,42 @@ router.get("/appointments", function(req, res){
           console.log(error)
       } else {
 
-      rows = results.map(result=> ({
-        ...result,
-        appntmnt_date: formatDate(result.appntmnt_date),
-        date_processed: formatDate(result.date_processed)
-      }));
+        internetAvailable({
+          // Provide maximum execution time for the verification
+          timeout: 5000,
+          // If it tries 5 times and it fails, then it will throw no internet
+          retries: 5
+        }).then(() => {
 
-          res.render("appointments", {rows:rows})
+          var msg = "Online"
+
+          rows = results.map(result=> ({
+            ...result,
+            appntmnt_date: formatDate(result.appntmnt_date),
+            date_processed: formatDate(result.date_processed)
+          }));
+
+          res.render("appointments",{
+            rows:rows,
+            msg:msg
+          })
+
+        }).catch(() => {
+            
+          var msg = "Please Connect to the internet"
+
+          rows = results.map(result=> ({
+            ...result,
+            appntmnt_date: formatDate(result.appntmnt_date),
+            date_processed: formatDate(result.date_processed)
+          }));
+
+          res.render("appointments",{
+            rows:rows,
+            msg:msg
+          })
+        }); 
+
       }
   })
 })
@@ -149,13 +206,44 @@ router.get("/observations", function(req, res){
           console.log(error)
       } else {
 
+        internetAvailable({
+          // Provide maximum execution time for the verification
+          timeout: 5000,
+          // If it tries 5 times and it fails, then it will throw no internet
+          retries: 5
+        }).then(() => {
+
+        var msg = "Online"
+
         rows = results.map(result=> ({
           ...result,
           observation_date: formatDate(result.observation_date),
           date_processed: formatDate(result.date_processed)
         }));
 
-        res.render("observations", {rows:rows})
+        res.render("observations",{
+          rows:rows,
+          msg:msg
+        })
+
+      }).catch(() => {
+            
+        var msg = "Please Connect to the internet"
+
+        rows = results.map(result=> ({
+          ...result,
+          observation_date: formatDate(result.observation_date),
+          date_processed: formatDate(result.date_processed)
+        }));
+
+        res.render("observations",{
+          rows:rows,
+          msg:msg
+        })
+      }); 
+
+        
+
       }
   })
 })
@@ -192,12 +280,41 @@ router.get("/general-logs", function(req, res){
           console.log(error)
       } else {
 
-        rows = results.map(result=> ({
-          ...result,
-          date_processed: formatDate(result.date_processed)
-        }));
+        internetAvailable({
+          // Provide maximum execution time for the verification
+          timeout: 5000,
+          // If it tries 5 times and it fails, then it will throw no internet
+          retries: 5
+        }).then(() => {
 
-        res.render("general", {rows:rows})
+          var msg = "Online"
+
+          rows = results.map(result=> ({
+            ...result,
+            date_processed: formatDate(result.date_processed)
+          }));
+
+          res.render("general",{
+            rows:rows,
+            msg:msg
+          })
+
+        }).catch(() => {
+            
+          var msg = "Please Connect to the internet"
+
+          rows = results.map(result=> ({
+            ...result,
+            date_processed: formatDate(result.date_processed)
+          }));
+
+          res.render("general",{
+            rows:rows,
+            msg:msg
+          })
+
+        })  
+
       }
   })
 })
