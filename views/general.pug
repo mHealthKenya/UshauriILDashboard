@@ -35,9 +35,7 @@ block content
 
           table#resultTable.table.thead-light 
             thead 
-              tr: th First Name
-                  th Last Name
-                  th Clien Number
+              tr: th CCC Number
                   th File Number 
                   th Source  
                   th Logs 
@@ -45,8 +43,6 @@ block content
               each item in items
 
                 tr 
-                  td=item.f_name
-                  td=item.l_name
                   td=item.clinic_number
                   td=item.file_no
                   td=item.sending_application

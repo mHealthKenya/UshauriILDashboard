@@ -32,9 +32,7 @@ block content
 
           table#resultTable.table
             thead.thead-dark 
-              tr: th First Name 
-                  th Last Name
-                  th Clinic Number 
+              tr: th CCC Number
                   th Sending Facility
                   th Source
                   th Observation Value 
@@ -47,8 +45,6 @@ block content
               each item in items
 
                 tr 
-                  td=item.f_name
-                  td=item.l_name
                   td=item.clinic_number
                   td=item.mfl_code
                   td=item.sending_application

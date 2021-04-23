@@ -32,12 +32,11 @@ block content
 
           table#resultTable.table
             thead
-              tr: th Clinic Number 
+              tr: th CCC Number
                   th Appointment Date
                   th Appointment Reason 
                   th Appointment Status 
                   th Source 
-                  th Placer Appointment Number
                   th Processed  
                   th Date Processed
                   th Logs
@@ -50,7 +49,6 @@ block content
                   td=item.appointment_reason
                   td=item.app_status
                   td=item.db_source
-                  td=item.placer_appointment_number
                   td=item.processed
                   if item.date_processed == 'Invalid date'
                     td=('Missing')

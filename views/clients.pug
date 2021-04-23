@@ -3,14 +3,16 @@ extends layout/base
 block content
 
     #heading
-      h1.text-center IL Clients Sync
+
+      h1.text-center IL Clients Sync 
 
     #content
 
     
     //- Do it like this...You're already in JavaScript land after the -
     - var items = rows
-      
+    - var online = msg 
+
       div
 
         script.
@@ -35,9 +37,7 @@ block content
 
           table#resultTable.table.thead-light 
             thead 
-              tr: th First Name
-                  th Last Name
-                  th Client Number
+              tr: th Client Number
                   th Phone Number 
                   th Source 
                   th Enrollment Date
@@ -49,8 +49,6 @@ block content
               each item in items
 
                 tr 
-                  td=item.f_name
-                  td=item.l_name
                   td=item.clinic_number
                   td=item.phone_no
                   td=item.sending_application

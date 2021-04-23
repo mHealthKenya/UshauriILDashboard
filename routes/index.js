@@ -6,7 +6,7 @@ var encoder = bodyParser.urlencoded();
 const mysql = require("mysql");
 var moment = require("moment");
 var today = moment(new Date()).format("YYYY-MM-DD")
-console.log(today)
+var internetAvailable = require("internet-available");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -45,6 +45,10 @@ router.post("/",encoder, function(req,res){
   })
 })
 
+router.get("/settings", function(req,res, next) {
+  res.sendFile(path.resolve("views/settings.pug"));
+})
+
 router.get("/clients", function(req, res){
 
   connection.query("select * from clients where created_at >= ?",today, function(error,results,fields){
@@ -55,11 +59,13 @@ router.get("/clients", function(req, res){
         rows = results.map(result=> ({
           ...result,
           enrollment_date: formatDate(result.enrollment_date),
-          art_date: result.filter(formatDate(result.art_date)),
+          art_date: formatDate(result.art_date),
           date_processed: formatDate(result.date_processed)
-        }));
+        })); 
 
         res.render("clients", {rows:rows})
+
+
       }
   })
 })
