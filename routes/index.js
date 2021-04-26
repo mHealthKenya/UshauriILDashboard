@@ -11,7 +11,7 @@ var internetAvailable = require("internet-available");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "admin",
   port: 3306,
   database: "ushauri_il"
 });

@@ -7,11 +7,9 @@ block content
       h1.text-center IL Clients Sync 
 
     #content
-
     
     //- Do it like this...You're already in JavaScript land after the -
     - var items = rows
-    - var r = msg
 
       div
 
@@ -25,7 +23,6 @@ block content
           });
 
         p(class='navbar-text' value=test) 
-        h1=r
 
         div.text-center
           form(method="POST", action="/clients")
@@ -39,7 +36,7 @@ block content
 
           table#resultTable.table.thead-light 
             thead 
-              tr: th Client Number
+              tr: th CCC Number
                   th Phone Number 
                   th Source 
                   th Enrollment Date
