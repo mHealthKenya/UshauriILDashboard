@@ -14,4 +14,8 @@ open the index.js, change the mysql user and password and save
 
 cd back to the home directory
 
-run npm start
+run "sudo pm2 start npm -- start"
+
+run "sudo pm2 startup systemd"
+
+run "sudo pm2 save"
