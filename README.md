@@ -1,4 +1,4 @@
-Linux / Debian Installation 
+<b> Linux / Debian Installation </b>
 
 Navigate to the opt directory : cd /opt
 
@@ -25,7 +25,7 @@ run "sudo pm2 startup systemd"
 run "sudo pm2 save"
 
 
-Windows Installation
+<b> Windows Installation </b>
 
 Download the following codebase : https://github.com/mHealthKenya/UshauriILDashboard
 
