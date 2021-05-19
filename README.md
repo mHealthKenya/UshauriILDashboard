@@ -1,8 +1,12 @@
-Install git
+Linux / Debian Installation 
 
-Install nodejs
+cd /opt
 
-Clone the repository at "https://github.com/mHealthKenya/UshauriILDashboard" into your desired location
+Install git if it is not present : sudo apt-get install git
+
+Install nodejs if it is not present : sudo apt-get install nodejs
+
+Clone the repository : git clone https://github.com/mHealthKenya/UshauriILDashboard
 
 cd into the newly created "UshauriILDashboard" folder
 
