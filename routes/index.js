@@ -37,7 +37,7 @@ router.post("/",encoder, function(req,res){
 
   connection.query("select * from users where username = ? and password = ?",[username,password],function(error,results,fields){
       if (results.length > 0) {
-          res.redirect("/clients");
+          res.redirect("/general-logs");
       } else {
           res.redirect("/");
       }
