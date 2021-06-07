@@ -35,7 +35,8 @@ block content
           table#resultTable.table.thead-light 
             thead 
               tr: th CCC Number
-                  th File Number 
+                  th File Number
+                  th Message Type 
                   th Source  
                   th Logs 
             tbody 
@@ -44,6 +45,16 @@ block content
                 tr 
                   td=item.clinic_number
                   td=item.file_no
+                  if item.message_type == 'ADT^A04'
+                    td=('Patient Registration')
+                  else if item.message_type == 'ADT^A08'
+                    td=('Patient Update')
+                  else if item.message_type == 'SIU^S12'
+                    td=('Appointment Scheduling')
+                  else if item.message_type == 'ORU^R01'
+                    td=('Observation Result')
+                  else 
+                    td=('Missing')
                   td=item.sending_application
                   td=item.send_log
 
