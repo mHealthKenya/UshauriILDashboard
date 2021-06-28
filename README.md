@@ -12,11 +12,7 @@ cd into the newly created "UshauriILDashboard" folder
 
 Run "npm install"
 
-cd into the "/routes" folder
-
-open the index.js, change the mysql user and password and save
-
-cd back to the home directory
+open the .env file, update the username and password according to your mysql credentials, then save
 
 run "sudo pm2 start npm -- start"
 
@@ -35,14 +31,10 @@ cd into the newly created "UshauriILDashboard" folder
 
 Open the command line and run : npm install
 
-cd into the "/routes" folder
+open the .env file, update the username and password according to your mysql credentials, then save
 
-open the index.js, change the mysql user and password and save
+run "pm2 start npm -- start"
 
-cd back to the home directory
+run "pm2 startup"
 
-run "sudo pm2 start npm -- start"
-
-run "sudo pm2 startup"
-
-run "sudo pm2 save"
+run "pm2 save"
