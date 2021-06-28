@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+
 var bodyParser = require("body-parser");
 var encoder = bodyParser.urlencoded();
 const mysql = require("mysql");
@@ -9,11 +11,11 @@ var today = moment(new Date()).format("YYYY-MM-DD")
 var internetAvailable = require("internet-available");
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  port: 3306,
-  database: "ushauri_il"
+  host: process.env.HOST,
+  user: process.env.USERNAME,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
+  database: process.env.DATABASE
 });
 
 function formatDate(date) {
