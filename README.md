@@ -12,7 +12,7 @@ cd into the newly created "UshauriILDashboard" folder
 
 Run "npm install"
 
-open the .env file, update the username and password according to your mysql credentials, then save
+Open the .env file, update the username and password according to your mysql credentials, then save
 
 run "sudo pm2 start npm -- start"
 
@@ -31,7 +31,7 @@ cd into the newly created "UshauriILDashboard" folder
 
 Open the command line and run : npm install
 
-open the .env file, update the username and password according to your mysql credentials, then save
+Open the .env file, update the username and password according to your mysql credentials, then save
 
 run "pm2 start npm -- start"
 
