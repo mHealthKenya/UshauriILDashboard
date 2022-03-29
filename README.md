@@ -6,7 +6,7 @@ Install git if it is not present : sudo apt-get install git
 
 Install nodejs if it is not present : sudo apt-get install nodejs
 
-Clone the repository : git clone https://github.com/mHealthKenya/UshauriILDashboard
+Clone the repository : git clone https://github.com/palladiumkenya/ushauriILDashboard
 
 cd into the newly created "UshauriILDashboard" folder
 
@@ -23,7 +23,7 @@ run "sudo pm2 save"
 
 <b> Windows Installation </b>
 
-Download the following codebase : https://github.com/mHealthKenya/UshauriILDashboard
+Download the following codebase : https://github.com/palladiumkenya/ushauriILDashboard
 
 Copy and Paste the UshauriDashboard folder in Program Files in the Local Disk C Drive. 
 
