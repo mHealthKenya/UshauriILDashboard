@@ -38,3 +38,13 @@ run "pm2 start npm -- start"
 run "pm2 startup"
 
 run "pm2 save"
+
+<b> Docker Setup </b>
+
+git clone https://github.com/palladiumkenya/ushauriILDashboard
+cd into the newly created "UshauriILDashboard" folder
+Open the .env file, update the username and password according to your mysql credentials, then save
+BUild the latest ushaurliILDashboard using command: docker build -t ushauridahsboard .
+Run the newly built ushaurliILDashboard using command: docker run -d -p 3001:3001 ushauridahsboard:latest 
+You can now access the server at http://localhost:3001
+
