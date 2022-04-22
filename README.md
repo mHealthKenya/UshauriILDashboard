@@ -179,11 +179,11 @@ Here is a list of things you need to use the software and how to install them.
     ```
 4. Build docker image
     ```sh
-    docker build -t ushauriILDashboard .
+    docker build -t ushauriilashboard .
     ```
 5. Run Docker image
     ```sh
-    docker run -d -p 3001:3001 ushauriILDashboard:latest 
+    docker run -d -p 3001:3001 ushauriilashboard:latest 
     ```
 6. view instance 
     ```html
